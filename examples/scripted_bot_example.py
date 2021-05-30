@@ -1,60 +1,40 @@
 #!/usr/bin/env python3
 
+import time
+
+import numpy as np
+
 import ffai
 from ffai import Action, ActionType, Square, BBDieResult, Skill, PassDistance, Tile, Rules, Formation, ProcBot
 import ffai.ai.pathfinding as pf
-import time
 
 
 class MyScriptedBot(ProcBot):
 
-    def __init__(self, name):
+    def __init__(self, name, seed=None):
         super().__init__(name)
         self.my_team = None
         self.opp_team = None
         self.actions = []
         self.last_turn = 0
         self.last_half = 0
+        self.rnd = np.random.RandomState(seed)
 
-        self.off_formation = [
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "m", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "x", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "S"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "x"],
-            ["-", "-", "-", "-", "-", "s", "-", "-", "-", "0", "-", "-", "S"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "x"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "S"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "x", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "m", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-        ]
+    def _random_action(self, game):
+        # Select a random action type
+        while True:
+            action_choice = self.rnd.choice(game.state.available_actions)
+            # Ignore PLACE_PLAYER actions
+            if action_choice.action_type != ffai.ActionType.PLACE_PLAYER:
+                break
+        # Select a random position and/or player
+        position = self.rnd.choice(action_choice.positions) if len(action_choice.positions) > 0 else None
+        player = self.rnd.choice(action_choice.players) if len(action_choice.players) > 0 else None
+        # Make action object
+        action = ffai.Action(action_choice.action_type, position=position, player=player)
 
-        self.def_formation = [
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "x", "-", "b", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "x", "-", "S", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "0"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "0"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "0"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "x", "-", "S", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "x", "-", "b", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-            ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-        ]
+        return action
 
-        self.off_formation = Formation("Wedge offense", self.off_formation)
-        self.def_formation = Formation("Zone defense", self.def_formation)
-        self.setup_actions = []
 
     def new_game(self, game, team):
         """
@@ -87,16 +67,9 @@ class MyScriptedBot(ProcBot):
         self.my_team = game.get_team_by_id(self.my_team.team_id)
         self.opp_team = game.get_opp_team(self.my_team)
 
-        if self.setup_actions:
-            action = self.setup_actions.pop(0)
-            return action
-        else:
-            if game.get_receiving_team() == self.my_team:
-                self.setup_actions = self.off_formation.actions(game, self.my_team)
-                self.setup_actions.append(Action(ActionType.END_SETUP))
-            else:
-                self.setup_actions = self.def_formation.actions(game, self.my_team)
-                self.setup_actions.append(Action(ActionType.END_SETUP))
+        return self._random_action(game)
+
+
 
     def reroll(self, game):
         """
@@ -132,11 +105,13 @@ class MyScriptedBot(ProcBot):
         """
         Place the ball when kicking.
         """
-        left_center = Square(7, 8)
-        right_center = Square(20, 8)
-        if game.is_team_side(left_center, self.opp_team):
-            return Action(ActionType.PLACE_BALL, position=left_center)
-        return Action(ActionType.PLACE_BALL, position=right_center)
+        return self._random_action(game)
+        # TODO calculate center from game object
+        #left_center = Square(7, 8)
+        #right_center = Square(20, 8)
+        #if game.is_team_side(left_center, self.opp_team):
+        #    return Action(ActionType.PLACE_BALL, position=left_center)
+        #return Action(ActionType.PLACE_BALL, position=right_center)
 
     def high_kick(self, game):
         """
