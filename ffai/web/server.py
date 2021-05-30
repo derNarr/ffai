@@ -83,7 +83,7 @@ def get_all_replays():
 @app.route('/teams/<ruleset_name>', methods=['GET'])
 def get_all_teams(ruleset_name = 'BB2016'):
     ruleset = load_rule_set(ruleset_name)
-    teams = api.get_teams(ruleset)
+    teams = api.get_teams(ruleset, 3)
     team_list = []
     for team in teams:
         team_list.append(team.to_json())
