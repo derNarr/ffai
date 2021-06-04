@@ -3518,7 +3518,7 @@ class Setup(Procedure):
                 if action.player.position is not None:
                     self.game.pitch_to_reserves(action.player)
                 else:
-                    self.game.pitch_to_reserves(action.player)
+                    print("Ignoring PLACE_PLAYER action: Already in reserves")
             elif action.player.position is None:
                 if action.position is not None:
                     self.game.reserves_to_pitch(action.player, action.position)
