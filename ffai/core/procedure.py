@@ -637,7 +637,8 @@ class Bounce(Procedure):
 
         if self.kick:
             # Touchback
-            if not self.game.is_team_side(self.piece.position, self.game.get_receiving_team()):
+            if not (self.game.is_team_side(self.piece.position, self.game.get_receiving_team())
+                    or self.game.is_midfield(self.piece.position)):
                 Touchback(self.game, self.piece)
                 self.game.report(Outcome(OutcomeType.TOUCHBACK, team=self.game.get_receiving_team(),
                                          rolls=[roll_scatter]))
