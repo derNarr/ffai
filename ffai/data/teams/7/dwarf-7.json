@@ -1,0 +1,103 @@
+{
+    "name": "Dwarf Team Sevens",
+    "race": "Dwarf",
+    "treasury": 10000,
+    "apothecaries": 0,
+    "rerolls": 0,
+    "fan_factor": 1,
+    "ass_coaches": 2,
+    "cheerleaders": 0,
+    "players": [
+      {
+        "nr": 1,
+        "name": "Jethil, Gronalyn",
+        "position": "Blitzer",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 2,
+        "name": "Tacer, Elik",
+        "position": "Blitzer",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 3,
+        "name": "Romeo, Juit",
+        "position": "Runner",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 4,
+        "name": "Ordelle, Cosdeer",
+        "position": "Troll Slayer",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 5,
+        "name": "Gaet, Nunoo-Quarcoo",
+        "position": "Blocker",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 6,
+        "name": "Doar, Daniger",
+        "position": "Blocker",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      },
+      {
+        "nr": 7,
+        "name": "Brighton, Marsh",
+        "position": "Blocker",
+        "extra_skills": [],
+        "extra_ma": 0,
+        "extra_st": 0,
+        "extra_ag": 0,
+        "extra_av": 0,
+        "spp": 0,
+        "niggling": false,
+        "mng": false
+      }
+    ]
+}

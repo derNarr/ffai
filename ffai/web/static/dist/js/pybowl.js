@@ -2081,6 +2081,12 @@ appServices.factory('IconService', function() {
                 'Runner': 'dethrower',
                 'Assassin': 'dehorkon'
             },
+            'Dwarf':{
+                'Blocker': 'dlongbeard',
+                'Blitzer': 'dblitzer',
+                'Runner': 'drunner',
+                'Troll Slayer': 'dgrim'
+            },
             'High Elf':{
                 'Lineman': 'helineman',
                 'Blitzer': 'heblitzer',
