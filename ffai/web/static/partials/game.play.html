@@ -252,6 +252,12 @@
                             <div class="skill extra-skill-red" ng-repeat="skill in playerInFocus(game.state.away_team).extra_skills">{{ prettify(skill) }}</div>
                         </div>
                     </div>
+                    <div class="stats-box left">
+                        <div class="attribute skill-box">
+                            <div class="gamelabel">SPP</div>
+                            <div class="value red">{{playerInFocus(game.state.away_team).spp}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -309,6 +315,12 @@
                             <div class="gamelabel">SKILLS</div>
                             <div class="skill role-skill-blue" ng-repeat="skill in playerInFocus(game.state.home_team).role_skills">{{ prettify(skill) }}</div>
                             <div class="skill extra-skill-blue" ng-repeat="skill in playerInFocus(game.state.home_team).extra_skills">{{ prettify(skill) }}</div>
+                        </div>
+                    </div>
+                    <div class="stats-box left">
+                        <div class="attribute skill-box">
+                            <div class="gamelabel">SPP</div>
+                            <div class="value blue">{{playerInFocus(game.state.home_team).spp}}</div>
                         </div>
                     </div>
                 </div>
