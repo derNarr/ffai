@@ -3,7 +3,7 @@
   "race": "Human",
   "treasury": 0,
   "apothecaries": 0,
-  "rerolls": 3,
+  "rerolls": 1,
   "fan_factor": 3,
   "ass_coaches": 1,
   "cheerleaders": 2,
@@ -62,19 +62,6 @@
     },
     {
       "nr" : 5,
-      "name": "Headreka, Helmut",
-      "position": "Catcher",
-      "extra_skills" : [],
-      "extra_ma" : 0,
-      "extra_st" : 0,
-      "extra_ag" : 0,
-      "extra_av" : 0,
-      "spp": 0,
-      "niggling": false,
-      "mng": false
-    },
-    {
-      "nr" : 6,
       "name": "Himmelstein, Henny",
       "position": "Lineman",
       "extra_skills" : [],
@@ -87,7 +74,7 @@
       "mng": false
     },
     {
-      "nr" : 7,
+      "nr" : 6,
       "name": "Heldman, Dirk Hero",
       "position": "Lineman",
       "extra_skills" : [],
@@ -100,7 +87,7 @@
       "mng": false
     },
     {
-      "nr" : 8,
+      "nr" : 7,
       "name": "Holstein, Erdrich",
       "position": "Lineman",
       "extra_skills" : [],
@@ -113,20 +100,7 @@
       "mng": false
     },
     {
-      "nr" : 9,
-      "name": "Hackson, Gruff",
-      "position": "Lineman",
-      "extra_skills" : [],
-      "extra_ma" : 0,
-      "extra_st" : 0,
-      "extra_ag" : 0,
-      "extra_av" : 0,
-      "spp": 0,
-      "niggling": false,
-      "mng": false
-    },
-    {
-      "nr" : 10,
+      "nr" : 8,
       "name": "Kellhoofer, Ivan",
       "position": "Lineman",
       "extra_skills" : [],
