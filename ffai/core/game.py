@@ -614,6 +614,25 @@ class Game:
             return self.arena.board[position.y][position.x] in TwoPlayerArena.wing_right_tiles
         return self.arena.board[position.y][position.x] in TwoPlayerArena.wing_left_tiles
 
+    def is_midfield(self, position):
+        """
+        :param position:
+        :return: Returns True if pos is in the midfield.
+        """
+        return self.arena.board[position.y][position.x] in TwoPlayerArena.midfield_tiles
+
+    def get_midfield(self):
+        """
+        :return: a list of squares of the midfield of the arena.
+        """
+        tiles = []
+        for y in range(len(self.arena.board)):
+            for x in range(len(self.arena.board[y])):
+                position = self.get_square(x, y)
+                if self.is_midfield(position):
+                    tiles.append(position)
+        return tiles
+
     def remove_balls(self):
         """
         Removes all balls from the arena.
