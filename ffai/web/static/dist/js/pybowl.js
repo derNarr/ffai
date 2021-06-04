@@ -2063,6 +2063,12 @@ appServices.factory('IconService', function() {
 
     return {
         playerIcons: {
+            'Amazon': {
+                'Linewoman': 'amlineman',
+                'Blitzer': 'amblitzer',
+                'Thrower': 'amthrower',
+                'Catcher': 'amcatcher'
+            },
             'Chaos': {
                 'Beastman': 'cbeastman',
                 'Chaos Warrior': 'cwarrior',
@@ -2086,6 +2092,10 @@ appServices.factory('IconService', function() {
                 'Blitzer': 'dblitzer',
                 'Runner': 'drunner',
                 'Troll Slayer': 'dgrim'
+            },
+            'Halfling':{
+                'Halfling': 'halfling',
+                'Treeman': 'treeman'
             },
             'High Elf':{
                 'Lineman': 'helineman',
@@ -2132,12 +2142,6 @@ appServices.factory('IconService', function() {
                 'Thrower': 'skthrower',
                 'Gutter Runner': 'skrunner',
                 'Rat Ogre': 'ratogre'
-            },
-            'Amazon': {
-                'Linewoman': 'amlineman',
-                'Blitzer': 'amblitzer',
-                'Thrower': 'amthrower',
-                'Catcher': 'amcatcher'
             },
             'Undead': {
                 'Zombie': 'uzombie',
