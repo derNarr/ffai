@@ -1,10 +1,10 @@
 {
-    "name": "Chaos Dwarf Team",
+    "name": "Chaos Dwarf Team Sevens",
     "race": "Chaos Dwarf",
     "treasury": 0,
     "apothecaries": 0,
     "rerolls": 1,
-    "fan_factor": 0,
+    "fan_factor": 1,
     "ass_coaches": 0,
     "cheerleaders": 0,
     "players": [

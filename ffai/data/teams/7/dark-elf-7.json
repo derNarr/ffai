@@ -1,12 +1,12 @@
 {
-  "name": "Dark Elf Team",
+  "name": "Dark Elf Team Sevens",
   "race": "Dark Elf",
   "treasury": 0,
   "apothecaries": 0,
-  "rerolls": 1,
-  "fan_factor": 2,
+  "rerolls": 0,
+  "fan_factor": 1,
   "ass_coaches": 0,
-  "cheerleaders": 1,
+  "cheerleaders": 0,
   "players": [
     {
       "nr": 1,
