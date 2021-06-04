@@ -42,7 +42,7 @@ def create():
         num_human_players += 1
         awayAgent = Agent(f"Player {num_human_players}", human=True)
 
-    game = api.new_game(home_team_name=data['game']['home_team_name'], away_team_name=data['game']['away_team_name'], home_agent=homeAgent, away_agent=awayAgent)
+    game = api.new_game(home_team_name=data['game']['home_team_name'], away_team_name=data['game']['away_team_name'], home_agent=homeAgent, away_agent=awayAgent, board_size=7)
     return json.dumps(game.to_json())
 
 
@@ -83,7 +83,7 @@ def get_all_replays():
 @app.route('/teams/<ruleset_name>', methods=['GET'])
 def get_all_teams(ruleset_name = 'BB2016'):
     ruleset = load_rule_set(ruleset_name)
-    teams = api.get_teams(ruleset, 3)
+    teams = api.get_teams(ruleset, 7)
     team_list = []
     for team in teams:
         team_list.append(team.to_json())

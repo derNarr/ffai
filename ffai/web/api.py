@@ -18,7 +18,7 @@ replay_cache = {}
 step_cache = {}
 
 
-def new_game(away_team_name, home_team_name, away_agent=None, home_agent=None, config_name="web.json", board_size=3):
+def new_game(away_team_name, home_team_name, away_agent=None, home_agent=None, config_name="web.json", board_size=11):
     assert away_agent is not None
     assert home_agent is not None
     config = load_config(config_name)

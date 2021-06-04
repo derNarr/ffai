@@ -693,24 +693,24 @@ a:hover {
 }
 .gamecontent .gameboard .pitch {
   padding: 0;
-  width: 422px;
-  height: 152px;
+  width: 602px;
+  height: 332px;
   float: left;
 }
 .gamecontent .gameboard .pitch.swelteringheat {
-  background-image: url("../../img/arenas/pitch/heat_3s.jpg");
+  background-image: url("../../img/arenas/pitch/heat_7s.jpg");
 }
 .gamecontent .gameboard .pitch.verysunny {
-  background-image: url("../../img/arenas/pitch/sunny_3s.jpg");
+  background-image: url("../../img/arenas/pitch/sunny_7s.jpg");
 }
 .gamecontent .gameboard .pitch.blizzard {
-  background-image: url("../../img/arenas/pitch/blizzard_3s.jpg");
+  background-image: url("../../img/arenas/pitch/blizzard_7s.jpg");
 }
 .gamecontent .gameboard .pitch.nice {
-  background-image: url("../../img/arenas/pitch/nice_3s.jpg");
+  background-image: url("../../img/arenas/pitch/nice_7s.jpg");
 }
 .gamecontent .gameboard .pitch.pouringrain {
-  background-image: url("../../img/arenas/pitch/rain_3s.jpg");
+  background-image: url("../../img/arenas/pitch/rain_7s.jpg");
 }
 .gamecontent .gameboard .playericon {
   line-height: 28px;
