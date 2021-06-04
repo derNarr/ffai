@@ -1284,7 +1284,8 @@ class LandKick(Procedure):
 
     def step(self, action):
 
-        if not self.game.is_team_side(self.ball.position, self.game.get_receiving_team()):
+        if not (self.game.is_team_side(self.ball.position, self.game.get_receiving_team())
+                or self.game.is_midfield(self.ball.position)):
             Touchback(self.game, self.ball)
             self.game.report(Outcome(OutcomeType.TOUCHBACK, team=self.game.get_receiving_team()))
             return True
@@ -2426,8 +2427,11 @@ class PlaceBall(Procedure):
 
     def start(self):
         self.game.add_secondary_clock(self.game.get_kicking_team())
-        self.aa = [ActionChoice(ActionType.PLACE_BALL, team=self.game.get_kicking_team(),
-                                positions=self.game.get_team_side(self.game.get_receiving_team()))]
+        possible_positions = (self.game.get_team_side(self.game.get_receiving_team())
+                              + self.game.get_midfield())
+        self.aa = [ActionChoice(ActionType.PLACE_BALL,
+                                team=self.game.get_kicking_team(),
+                                positions=possible_positions)]
 
     def step(self, action):
         self.game.state.pitch.balls.append(self.ball)
@@ -3508,6 +3512,13 @@ class Setup(Procedure):
                     self.game.pitch_to_reserves(action.player)
                 else:
                     print("Ignoring PLACE_PLAYER action: Already in reserves")
+            elif not self.game.is_team_side(action.position, self.team):
+                print("Target position not on team side. Place player in reserves.")
+                action.position = None
+                if action.player.position is not None:
+                    self.game.pitch_to_reserves(action.player)
+                else:
+                    self.game.pitch_to_reserves(action.player)
             elif action.player.position is None:
                 if action.position is not None:
                     self.game.reserves_to_pitch(action.player, action.position)

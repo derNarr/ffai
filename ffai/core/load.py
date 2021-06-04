@@ -26,7 +26,8 @@ arena_char_map = {
     'l': Tile.HOME_WING_LEFT,
     'r': Tile.HOME_WING_RIGHT,
     'E': Tile.AWAY_TOUCHDOWN,
-    'e': Tile.HOME_TOUCHDOWN
+    'e': Tile.HOME_TOUCHDOWN,
+    'm': Tile.MIDFIELD,
 }
 
 
@@ -198,21 +199,14 @@ def load_arena(name):
     # name = 'Unknown arena'
     dungeon = False
     board = []
-    file = open(path, 'r')
-    while True:
-        line = file.readline()
-        if not line:
-            break
-        row = []
-        for c in line:
-            if c not in arena_char_map.keys():
-                if c in ['\n']:
-                    continue
-                file.close()
-                raise Exception("Unknown tile type " + c)
-            row.append(arena_char_map[c])
-        board.append(np.array(row))
-    file.close()
+    with open(path, 'r') as file_:
+        for line in file_:
+            row = []
+            for c in line.strip():
+                if c not in arena_char_map.keys():
+                    raise Exception("Unknown tile type " + c)
+                row.append(arena_char_map[c])
+            board.append(np.array(row))
     return TwoPlayerArena(np.array(board))
 
 

@@ -524,6 +524,7 @@ class TwoPlayerArena:
     wing_left_tiles = [Tile.HOME_WING_LEFT, Tile.AWAY_WING_LEFT]
     home_td_tiles = [Tile.HOME_TOUCHDOWN]
     away_td_tiles = [Tile.AWAY_TOUCHDOWN]
+    midfield_tiles = [Tile.MIDFIELD]
 
     def __init__(self, board):
         self.board = board
