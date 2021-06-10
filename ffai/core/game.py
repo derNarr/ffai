@@ -1304,6 +1304,14 @@ class Game:
             return False
         elif not self.is_setup_legal_wings(team, max_players=self.config.wing_max):
             return False
+        # check if all players are on the team side
+        for y in range(len(self.state.pitch.board)):
+            for x in range(len(self.state.pitch.board[y])):
+                if self.is_team_side(self.get_square(x, y), team):
+                    continue  # skip own team tiles
+                piece = self.state.pitch.board[y][x]
+                if isinstance(piece, Player) and piece.team == team:
+                    return False
         return True
 
     def is_setup_legal_count(self, team, tile=None, max_players=11, min_players=3):
