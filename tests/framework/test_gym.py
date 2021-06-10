@@ -26,6 +26,9 @@ def test_gym(env):
     done = False
     while not done:
         action_types = env.available_action_types()
+        print('ENV: ', action_types)
+        print('GAME: ', ', '.join(aa.action_type.name for aa in env.game.state.available_actions))
+        print('REPORT: ', ', '.join(outcome.outcome_type.name for outcome in env.game.state.reports))
         assert len(action_types) > 0
         action_type = rnd.choice(action_types)
         available_positions = env.available_positions(action_type)

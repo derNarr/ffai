@@ -11,6 +11,16 @@ from ffai.core.procedure import *
 from ffai.core.forward_model import Trajectory, MovementStep
 
 
+class GameError(Exception):
+    pass
+
+
+
+class GameActionError(GameError):
+    pass
+
+
+
 class Game:
 
     def __init__(self, game_id, home_team, away_team, home_agent, away_agent, config=None, arena=None, ruleset=None, state=None, seed=None, record=False):
@@ -340,6 +350,7 @@ class Game:
 
         # If no action and action is required
         if action is None and len(self.state.available_actions) > 0:
+            raise GameActionError(f"None action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
             if self.config.debug_mode:
                 print("None action is not allowed when actions are available")
             return True  # Game needs user input
@@ -351,12 +362,17 @@ class Game:
                     # Consider this as a None action
                     action = None
                 else:
+                    raise GameActionError(f"CONTINUE action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
                     if self.config.debug_mode:
                         print("CONTINUE action is not allowed when actions are available")
                     return True  # Game needs user input
             else:
                 # Only allowed actions
                 if not self._is_action_allowed(action):
+                    if type(action) is Action:
+                        raise GameActionError(f"Action not allowed {action.to_json() if action is not None else 'None'} ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
+                    else:
+                        raise GameActionError(f"Action not allowed {action} ({aa.action_type.name for aa in self.state.available_actions})")
                     if self.config.debug_mode:
                         if type(action) is Action:
                             print(f"Action not allowed {action.to_json() if action is not None else 'None'}")
