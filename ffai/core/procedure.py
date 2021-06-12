@@ -3843,14 +3843,14 @@ class Turn(Procedure):
                 if self.blitz_available and not player.state.taken_root:
                     blitz_players.append(player)
                 if self.pass_available:
-                    if not player.state.taken_root or self.game.get_ball_carrier() == player:
-                        pass_players.append(player)
+                    #if not player.state.taken_root or self.game.get_ball_carrier() == player:
+                    pass_players.append(player)
                 if self.handoff_available:
-                    if not player.state.taken_root or self.game.get_ball_carrier() == player:
-                        handoff_players.append(player)
+                    #if not player.state.taken_root or self.game.get_ball_carrier() == player:
+                    handoff_players.append(player)
                 if self.foul_available:
-                    if not player.state.taken_root or self.game.get_adjacent_opponents(player, down=True, standing=False):
-                        foul_players.append(player)
+                    #if not player.state.taken_root or self.game.get_adjacent_opponents(player, down=True, standing=False):
+                    foul_players.append(player)
                 if not self.quick_snap and not self.blitz and (player.state.up or player.has_skill(Skill.JUMP_UP)):
                     if self.game.get_adjacent_opponents(player, down=False):
                         block_players.append(player)
