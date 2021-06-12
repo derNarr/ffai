@@ -51,7 +51,7 @@
       "nr": 4,
       "name": "Istrabaire Sharpblade",
       "position": "Witch Elf",
-      "extra_skills": [],
+      "extra_skills": ["Stab"],
       "extra_ma": 0,
       "extra_st": 0,
       "extra_ag": 0,
