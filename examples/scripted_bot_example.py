@@ -100,6 +100,8 @@ class MyScriptedBot(ProcBot):
             if attackers_down == len(context.roll.dice) and context.favor != self.opp_team:
                 return Action(ActionType.USE_REROLL)
             return Action(ActionType.DONT_USE_REROLL)
+        # if none of the above like Bonehead
+        return Action(ActionType.DONT_USE_REROLL)
 
     def place_ball(self, game):
         """
