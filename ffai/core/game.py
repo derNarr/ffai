@@ -23,7 +23,7 @@ class GameActionError(GameError):
 
 class Game:
 
-    def __init__(self, game_id, home_team, away_team, home_agent, away_agent, config=None, arena=None, ruleset=None, state=None, seed=None, record=False):
+    def __init__(self, game_id, home_team, away_team, home_agent, away_agent, config=None, arena=None, ruleset=None, state=None, seed=None, record=False, strict=True):
         assert config is not None or arena is not None
         assert config is not None or ruleset is not None
         assert home_team.team_id != away_team.team_id
@@ -46,6 +46,7 @@ class Game:
         self.action = None
         self.trajectory = Trajectory()
         self.square_shortcut = self.state.pitch.squares
+        self.strict = strict
 
     def to_json(self, ignore_reports=False):
         return {
@@ -351,7 +352,8 @@ class Game:
 
         # If no action and action is required
         if action is None and len(self.state.available_actions) > 0:
-            raise GameActionError(f"None action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
+            if self.strict:
+                raise GameActionError(f"None action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
             if self.config.debug_mode:
                 print("None action is not allowed when actions are available")
             return True  # Game needs user input
@@ -363,7 +365,8 @@ class Game:
                     # Consider this as a None action
                     action = None
                 else:
-                    raise GameActionError(f"CONTINUE action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
+                    if self.strict:
+                        raise GameActionError(f"CONTINUE action is not allowed when actions are available ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
                     if self.config.debug_mode:
                         print("CONTINUE action is not allowed when actions are available")
                     return True  # Game needs user input
@@ -371,9 +374,11 @@ class Game:
                 # Only allowed actions
                 if not self._is_action_allowed(action):
                     if type(action) is Action:
-                        raise GameActionError(f"Action not allowed {action.to_json() if action is not None else 'None'} ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
+                        if self.strict:
+                            raise GameActionError(f"Action not allowed {action.to_json() if action is not None else 'None'} ({', '.join(aa.action_type.name for aa in self.state.available_actions)})")
                     else:
-                        raise GameActionError(f"Action not allowed {action} ({aa.action_type.name for aa in self.state.available_actions})")
+                        if self.strict:
+                            raise GameActionError(f"Action not allowed {action} ({aa.action_type.name for aa in self.state.available_actions})")
                     if self.config.debug_mode:
                         if type(action) is Action:
                             print(f"Action not allowed {action.to_json() if action is not None else 'None'}")
